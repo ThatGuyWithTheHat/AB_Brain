@@ -1,5 +1,4 @@
-
-import time
+from include import *
 class timer:
 	#set up variables
 	endTime = 0 #holds the timer end variable

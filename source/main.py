@@ -2,17 +2,18 @@
 
 import sys
 sys.path.insert(0, '../include')
+from include import *
 
-import threading
-from queue import Queue
-import time
-from timer import *
+
 
 i = timer(.2)
 print_lock = threading.Lock()
 timers = []
 def main():
 	print("hello world")
+	arguments = sys.argv
+	for item in arguments:
+		print(item)
 
 	
 	t = threading.Thread(target = beginTimer, args=(0,))
