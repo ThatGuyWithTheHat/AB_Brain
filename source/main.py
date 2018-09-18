@@ -1,34 +1,45 @@
 #!/bin/env python3.6
 
+
+global DEBUG #debug flag
+#include files
 import sys
 sys.path.insert(0, '../include')
-from include import *
+from timer import *
+from debugger import *
 
 
+#END INCLUDE
 
-i = timer(.2)
+myDe = debugger()
 print_lock = threading.Lock()
 timers = []
 def main():
-	print("hello world")
-	arguments = sys.argv
-	for item in arguments:
-		print(item)
-
 	
+	arguments = sys.argv #pull in arguments
+	counter = 0
+	for item in arguments:
+		
+		#print(item)
+		if(item == "-D"):
+			myDe.activate()
+		myDe.debugPrint(item, "input " + str(counter))
+		counter = counter + 1
+	i = timer(.2, myDe)
+	myDe.debugPrint("Debugger Activated")
+	timers.append(i)
 	t = threading.Thread(target = beginTimer, args=(0,))
 	t.daemon = True
 	t.start()
 	time.sleep(1)
+
 	while(i.on):
 		anyActive = False
 		time.sleep(1)
 
-
 def beginTimer(index):
-	print("begin count down")
-	i.timing()
-	timers.append(i)
+	myDe.debugPrint("testing")
+	timers[index].timing
 
 
 	
@@ -39,4 +50,5 @@ def beginTimer(index):
 #print("test failed")
 
 if __name__ == '__main__':
+	DEBUG = False
 	main()
