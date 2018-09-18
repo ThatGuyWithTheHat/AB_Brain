@@ -21,12 +21,12 @@ def main():
 	for item in arguments:
 		
 		#print(item)
-		if(item == "-D"):
+		if(item == "-D" or item == "-d"):
 			myDe.activate()
 		myDe.debugPrint(item, "input " + str(counter))
 		counter = counter + 1
 	i = timer(.2, myDe)
-	myDe.debugPrint("Debugger Activated")
+	#myDe.debugPrint("Debugger Activated")
 	timers.append(i)
 	t = threading.Thread(target = beginTimer, args=(0,))
 	t.daemon = True
@@ -39,7 +39,7 @@ def main():
 
 def beginTimer(index):
 	myDe.debugPrint("testing")
-	timers[index].timing
+	timers[index].timing()
 
 
 	
