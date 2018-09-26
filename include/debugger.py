@@ -14,21 +14,27 @@ class debugger:
 	on = False
 	
 	def __init__(self):
-			 """!@brief Creates a debugger object.
-
-    allows us to more easily run debug prints
-    """
-		self.on = False
+                """!@brief Creates a debugger object.
+        allows us to more easily run debug prints"""
+                self.on = False
 
 	def activate(self):
-		self.on = True
+                self.on = True
 
 	def debugPrint(self, msg, header = ""):
-		print_lock = threading.Lock()
+                print_lock = threading.Lock()
 		#print(str(self.on))
-		with print_lock:
-			if(self.on):
-				print(colored('DEBUGGER:', 'red'))
-				print(colored(header, 'yellow'))
-				print(colored('\t' + msg,'green'))
+                listMsg = ""
+                with print_lock:
+                        if(self.on):
+                                if(type(msg) is list):
+                                        for item in msg:
+                                                print(item)
+                                #listMsg = listMsg + "\n\t" + str(item)
+                        
+               
+                                else:
+                                        print(colored('DEBUGGER:', 'red'))
+                                        print(colored(header, 'yellow'))
+                                        print(colored('\t' + msg,'green'))
 		
