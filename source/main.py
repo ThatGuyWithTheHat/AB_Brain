@@ -15,16 +15,16 @@ myDe = debugger()
 print_lock = threading.Lock()
 timers = []
 def main():
-	
 	arguments = sys.argv #pull in arguments
 	counter = 0
-	for item in arguments:
-		
+	for item in arguments:	
 		#print(item)
 		if(item == "-D" or item == "-d"):
 			myDe.activate()
 		myDe.debugPrint(item, "input " + str(counter))
 		counter = counter + 1
+
+
 	i = timer(.2, myDe)
 	#myDe.debugPrint("Debugger Activated")
 	timers.append(i)
